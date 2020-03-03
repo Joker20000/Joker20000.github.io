@@ -59,7 +59,7 @@
                     <div class="cols">7</div>
                     <div class="cols">8</div>
                     <div class="cols">9</div>
-                    <div class="cols">^</div>
+                    <div class="cols">x*x</div>
                 </div>
                 <div class="rows">
                     <div class="cols">4</div>
@@ -100,10 +100,6 @@
 
                 clickType = true;
 
-            }else if(event.target.innerText === '←') {
-
-                showBox.innerText = showBox.innerText.slice(0, -1);
-
             }else{
 
                 if(clickType) {
@@ -114,7 +110,19 @@
 
                 }
 
-                showBox.innerText = showBox.innerText + event.target.innerText;
+                if(event.target.innerText === '←') {
+
+                    showBox.innerText = showBox.innerText.slice(0, -1);
+
+                } else if(event.target.innerText === 'x*x') {
+
+                    showBox.innerText = showBox.innerText + '**';
+
+                }else {
+
+                    showBox.innerText = showBox.innerText + event.target.innerText;
+                    
+                }
 
             }
 
