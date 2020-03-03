@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>吃什么</title>
+    <style>
+        input{
+            display: block;
+            margin: 5px 0;
+        }
+        .add_btn{
+            width: 30px;
+            height: 20px;
+            line-height: 20px;
+            border: 1px solid #ababab;
+            text-align: center;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="input_box">
+        <input type="text" placeholder="输入想吃的东西">
+    </div>
+    <div class="add_btn" onclick="addEat()">+</div>
+    <div class="btn_box">
+        <button onclick="startFn()">开始</button>
+        <button onclick="stopFn()">停止</button>
+    </div>
+    <div class="show_box"></div>
+    <script>
+
+        var interval;
+        function addEat () {
+
+            var div = document.getElementsByClassName('input_box')[0];
+
+            var input = document.createElement('input');
+
+            input.setAttribute('placeholder', '输入想吃的东西');
+
+            div.appendChild(input);
+
+        }
+
+
+        function startFn () {
+
+            var input = document.getElementsByTagName('input');
+
+            var div = document.getElementsByClassName('show_box')[0];
+
+            var arr = [];
+
+            for(var node of input) {
+
+                arr.push(node.value);
+
+            }
+
+            interval = setInterval(function () {
+
+                var i = Math.floor(Math.random() * arr.length);
+
+                div.innerText = arr[i++];
+
+            },10);
+
+        }
+
+        function stopFn () {
+
+            clearInterval(interval);
+
+        }
+    </script>
+</body>
+</html>
