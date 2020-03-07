@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>时间显示</title>
+	<style type="text/css">
+		.show_time{
+			font-size: 0;
+		}
+		.show_time span{
+			font-size:  30px;
+		}
+		.clock{
+			width: 300px;
+		    height: 300px;
+		    border: 1px solid #ababab;
+		    border-radius: 50%;
+		    position: relative;
+		    font-size: 0;
+		}
+		.clock div{
+			position: absolute;
+			bottom: 50%;
+			background-color: #4a4a4a;
+			transform-origin: bottom;
+		}
+		.clock .hour_pointer{
+			width: 6px;
+			height: 100px;
+			left: 147px;
+		}
+		.clock .minutes_pointer{
+			width: 4px;
+			height: 120px;
+			left: 148px;
+		}
+		.clock .second_pointer{
+			width: 2px;
+			height: 140px;
+			left: 149px;
+		}
+		.clock .time_num{
+			bottom: 141px;
+			width: 50%;
+			background-color: white;
+			z-index: -1;
+			transform-origin: right;
+			font-size: 14px;
+			padding-left: 5px;
+			box-sizing: border-box;
+		}
+		.time_num span{
+			display: inline-block;
+		}
+		.clock .one{
+			transform: rotate(120deg);
+		}
+		.one span{
+			transform: rotate(-120deg);
+		}
+		.clock .two{
+			transform: rotate(150deg);
+		}
+		.two span{
+			transform: rotate(-150deg);
+		}
+		.clock .three{
+			transform: rotate(180deg);
+		}
+		.three span{
+			transform: rotate(-180deg);
+		}
+		.clock .four{
+			transform: rotate(-150deg);
+		}
+		.four span{
+			transform: rotate(150deg);
+		}
+		.clock .five{
+			transform: rotate(-120deg);
+		}
+		.five span{
+			transform: rotate(120deg);
+		}
+		.clock .six{
+			transform: rotate(-90deg);
+		}
+		.six span{
+			transform: rotate(90deg);
+		}
+		.clock .seven{
+			transform: rotate(-60deg);
+		}
+		.seven span{
+			transform: rotate(60deg);
+		}
+		.clock .eight{
+			transform: rotate(-30deg);
+		}
+		.eight span{
+			transform: rotate(30deg);
+		}
+		.clock .ten{
+			transform: rotate(30deg);
+		}
+		.ten span{
+			transform: rotate(-30deg);
+		}
+		.clock .eleven{
+			transform: rotate(60deg);
+		}
+		.eleven span{
+			transform: rotate(-60deg);
+		}
+		.clock .twelve{
+			transform: rotate(90deg);
+		}
+		.twelve span{
+			transform: rotate(-90deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="show_time">
+		<span class="year"></span><span>年</span>
+		<span class="month"></span><span>月</span>
+		<span class="day"></span><span>日</span>
+		<span class="hour"></span><span>:</span>
+		<span class="minutes"></span><span>:</span>
+		<span class="second"></span>
+		<span>星期</span><span class="week"></span>
+	</div>
+	<div class="clock">
+		<div class="hour_pointer"></div>
+		<div class="minutes_pointer"></div>
+		<div class="second_pointer"></div>
+		<div class="time_num one"><span>1</span></div>
+		<div class="time_num two"><span>2</span></div>
+		<div class="time_num three"><span>3</span></div>
+		<div class="time_num four"><span>4</span></div>
+		<div class="time_num five"><span>5</span></div>
+		<div class="time_num six"><span>6</span></div>
+		<div class="time_num seven"><span>7</span></div>
+		<div class="time_num eight"><span>8</span></div>
+		<div class="time_num nine"><span>9</span></div>
+		<div class="time_num ten"><span>10</span></div>
+		<div class="time_num eleven"><span>11</span></div>
+		<div class="time_num twelve"><span>12</span></div>
+	</div>
+	<script type="text/javascript">
+
+		let year,month,day,hour,minutes,second,week,arr;
+		window.onload = init();
+		function init () {
+			let div = document.getElementsByClassName('show_time')[0];
+			let now = new Date();
+			year = now.getFullYear();
+			month = now.getMonth() + 1;
+			day = now.getDate();
+			hour = now.getHours();
+			minutes = now.getMinutes();
+			second = now.getSeconds();
+			week = now.getDay();
+			arr = ['日','一','二','三','四','五','六'];
+			inputVal(year, 'year');
+			inputVal(timeShowType(month), 'month');
+			inputVal(timeShowType(day), 'day');
+			inputVal(timeShowType(hour), 'hour');
+			inputVal(timeShowType(minutes), 'minutes');
+			inputVal(timeShowType(second), 'second');
+			inputVal(arr[week], 'week');
+			clockShow(now);
+			setInterval(function () {
+				changeTime();
+			}, 1000);
+		}
+		function inputVal (val, className) {
+			let span = document.getElementsByClassName(className)[0];
+			span.innerText = val;
+		}
+		function timeShowType (num) {
+			var showNum = num + '';
+			return showNum.padStart(2, '0');
+		}
+		function changeTime() {
+
+			let newtime = new Date();
+			(year !== newtime.getFullYear()) && (inputVal(year, 'year'));
+			(month !== (newtime.getMonth() + 1)) && inputVal(timeShowType(month), 'month');
+			(day !== newtime.getDate()) && (inputVal(timeShowType(day), 'day') || inputVal(arr[week], 'week'));
+			(hour !== newtime.getHours()) && (inputVal(timeShowType(hour), 'hour'));
+			(minutes !== newtime.getMinutes()) && (inputVal(timeShowType(second), 'second'));
+			second = newtime.getSeconds();
+			inputVal(timeShowType(second), 'second');
+			clockShow(newtime);
+
+		}
+		function clockShow (time) {
+
+			let hourPointer = document.getElementsByClassName('hour_pointer')[0];
+			let minutesPointer = document.getElementsByClassName('minutes_pointer')[0];
+			let secondPointer = document.getElementsByClassName('second_pointer')[0];
+			let hour = time.getHours();
+			let minutes = time.getMinutes();
+			let second = time.getSeconds();
+			let minutesScale = minutes / 60;
+			let secondScale = second / 60;
+			hourPointer.style.transform = 'rotate('+ ((hour + minutesScale) * 30) +'deg)';
+			minutesPointer.style.transform = 'rotate('+(minutes + secondScale)*6+'deg)';
+			secondPointer.style.transform = 'rotate('+second*6+'deg)';
+
+		}
+	</script>
+</body>
+</html>
