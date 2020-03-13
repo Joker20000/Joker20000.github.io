@@ -87,7 +87,9 @@
     function getColorXY (x,y){
         var imgData = ctx.getImageData(x,y,1,1);
         var color = imgData.data;
-        color_box.style.backgroundColor = 'rgb('+ color[0] + ',' + color[1] + ',' + color[2] + ',' + color[3] +')';
+        var colorText = 'rgb('+ color[0] + ',' + color[1] + ',' + color[2] + ',' + color[3] +')'
+        color_box.style.backgroundColor = colorText;
+        color_box.innerText = colorText;
     }
 </script>
 </body>
