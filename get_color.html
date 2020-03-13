@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>取色</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        body{
+            height: 100vh;
+            width: 100vw;
+        }
+        .color_box{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<input type="file" onchange="inputImg()" accept="image/*">
+<canvas></canvas>
+<div class="color_box"></div>
+<script>
+    var canvas, ctx, listenType, canvasX, canvasY;
+    var color_box = document.getElementsByClassName('color_box')[0];
+    function inputImg() {
+        var input = document.getElementsByTagName('input')[0];
+        var file = input.files[0];
+        canvas = document.getElementsByTagName('canvas')[0];
+        var img = new Image();
+        var url = URL.createObjectURL(file);
+        ctx = canvas.getContext('2d');
+        img.onload = function () {
+            canvas.width = img.width;
+            canvas.height= img.height;
+            ctx.drawImage(img, 0, 0);
+        }
+        img.src = url;
+        canvas.addEventListener('touchstart', startGetColor);
+        canvas.addEventListener('mousedown', startGetColor);
+        document.addEventListener('mouseup', endGetColor);
+        document.addEventListener('touchend', endGetColor);
+    }
+    function startGetColor(e) {
+        canvasX = canvas.offsetLeft;
+        canvasY = canvas.offsetTop;
+        if(listenType) return;
+        getColor(e);
+        if(e.type === 'touchstart'){
+            canvas.addEventListener('touchmove', getColor);
+            listenType = true;
+        }else {
+            canvas.addEventListener('mousemove', getColor);
+        }
+    }
+    function getColor(e) {
+        if(e.type.includes('touch')){
+            touchGetColor(e);
+        }else{
+            mouseGetColor(e);
+        }
+    }
+    function endGetColor() {
+        canvas.removeEventListener('mousemove', getColor);
+        canvas.removeEventListener('touchmove', getColor);
+        listenType = false;
+    }
+    function touchGetColor(e) {
+        var pageX = e.touches[0].pageX;
+        var pageY = e.touches[0].pageY;
+        var x = pageX - canvasX;
+        var y = pageY - canvasY;
+        getColorXY(x, y);
+    }
+    function mouseGetColor(e) {
+        var x = e.offsetX;
+        var y = e.offsetY;
+        getColorXY(x, y);
+    }
+    function getColorXY (x,y){
+        var imgData = ctx.getImageData(x,y,1,1);
+        var color = imgData.data;
+        color_box.style.backgroundColor = 'rgb('+ color[0] + ',' + color[1] + ',' + color[2] + ',' + color[3] +')';
+    }
+</script>
+</body>
+</html>
