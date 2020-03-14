@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimum-scale=1,maximum-scale=1">
+<meta name="Author" content="王楷焜">
+<meta name="Keywords" content="前端开发,简历,王楷焜">
+<head>
+	<script type="text/javascript">
+		var page = window.navigator.appVersion;
+		if(page.includes('Android') || page.includes('iPhone')){
+			window.location.href = 'https://joker20000.github.io/resumeMobile.html';
+		}
+	</script>
+	<title>简历</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			color: #4a4a4a;
+			font-size: 14px;
+		}
+		body{
+			margin: auto;
+			padding: 5px 0;
+			width: 1000px;
+		}
+		.name{
+			position: relative;
+			margin: 5px 0;
+			font-size: 22px;
+		}
+		.name::after{
+			content: "";
+			position: absolute;
+			bottom: -2px;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 1px;
+			border-bottom: 1px dashed #00f;
+		}
+		.contact{
+			text-align: right;
+			color: #ababab;
+		}
+		.work_for .work_title{
+			margin: 15px 40% 15px 0;
+			display: inline-block;
+			font-size: 18px;
+		}
+		.self_assessment .self_title{
+			margin: 15px 0;
+			font-size: 18px;
+		}
+		.self_assessment .self_content{
+			margin: 10px 15px;
+			line-height: 24px;
+		}
+		.work_history .work_history_title{
+			margin: 15px 0;
+			font-size: 18px;
+		}
+		.work_list .history_title{
+			margin: 15px 0;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.work_list .history_title span{
+			color: rgb(61, 168, 170);
+		}
+		.work_list .work_detail{
+			margin: 10px 0;
+		}
+		.project .title{
+			margin: 10px 0;
+			font-size: 16px;
+		}
+		.project .project_title{
+			margin: 10px 0;
+			display: flex;
+			justify-content: space-between;
+		}
+		.project .project_detail{
+			margin: 0 10px;
+			line-height: 24px;
+		}
+		.edu_history>div{
+			margin: 10px 0;
+		}
+		.edu_history .edu_title{
+			font-size: 18px;
+		}
+		.edu_history .edu_name{
+			display: flex;
+			justify-content: space-between;
+		}
+		.edu_history .edu_name span{
+			color: rgb(61, 168, 170);
+		}
+		.edu_history .edu_lv span{
+			margin-right: 50px;
+			color: #ababab;
+		}
+		.person_information .person_title{
+			margin: 10px 0;
+			font-size: 18px;
+		}
+		.person_detail .list{
+			margin: 8px 10px;
+			display: flex;
+			justify-content: space-between;
+		}
+		.person_detail .list div{
+			width: 200px
+		}
+		.person_detail .list div:last-child{
+			text-align: right;
+		}
+		.technology .technology_title{
+			margin: 10px 0;
+			display: flex;
+			justify-content: space-between;
+		}
+		.technology .technology_title span:first-child{
+			font-size: 16px;
+		}
+		.technology .technology_detail{
+			margin: 0 10px;
+		}
+		.technology .technology_detail ul{
+			padding: 0;
+		}
+		.technology .technology_detail li{
+			margin: 8px 0;
+			list-style-type: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="name">王楷焜</div>
+	<div class="contact">wangyakun1992@126.com</div>
+	<div class="work_for">
+		<span class="work_title">求职意向</span>
+		<span class="work_name">前端开发工程师</span>
+	</div>
+	<div class="self_assessment">
+		<div class="self_title">自我评价</div>
+		<div class="self_content">4年前端开发经验。熟练使用html/css/js/less编程，能够解决常见兼容性问题。熟悉VUE，React等主流的框架，有从零开始使用VUE独立完成项目的经验。熟悉webpack打包工具，可以对VUE的webpack的打包做出一定程度上的优化，并根据webpack功能特点对VUE代码做出特定的优化。对微信小程序的开发有一定的了解，能够为项目进行迭代升级和维护。具有良好的编程习惯和较强的学习能力。能够快速的投入到实际工作中，抗压能力强。</div>
+	</div>
+	<div class="work_history">
+		<div class="work_history_title">工作经历</div>
+		<div class="work_list">
+			<div class="history_title">
+				<span class="work_time">2018.05-至今	</span>
+				<span class="company_name">上海淘略数据处理有限公司</span>
+				<span class="work_name">前端开发工程师</span>
+			</div>
+			<div class="work_detail">
+				<ol>
+					<li>负责微信公众号网页开发任务。</li>
+					<li>与产品，设计，开发人员配合，根据需求调整、修改、优化页面。</li>
+					<li>解决不同机型浏览器下的兼容问题。</li>
+					<li>负责微信小程序的版本迭代。</li>
+				</ol>
+			</div>
+			<div class="project">
+				<div class="title">负责项目</div>
+				<div class="project_title">
+					<span>嘉薪平台用户端</span>
+					<span>微信公众号网页开发</span>
+				</div>
+				<div class="project_detail">
+					<div class="detail_title">该项目为众包任务平台，是前后端分离项目，通过嘉薪公众号下个人登录按钮可以访问。</div>
+该项目使用VUE框架以及vue-router构建单页面应用，使用vuex处理跨页面组件间的通讯，同页面非父子组件间通讯使用中央总线事件。使用mint-ui组件来完成页面中的部分toast提示、弹窗、上拉加载、下拉刷新等功能，通过vue-cli快读搭建开发环境。通过axios组件与后端进行通信，获取后端数据，通过保存在localStorage的后端返回的请求头文件来做oAuth验证账号的登录状态。整个项目前端部分由我独立完成。</div>
+			</div>
+		</div>
+		<div class="work_list">
+			<div class="history_title">
+				<span class="work_time">2015.09-2017.12</span>
+				<span class="company_name">沈阳普华科技发展有限公司</span>
+				<span class="work_name">前端开发工程师</span>
+			</div>
+			<div class="work_detail">
+				<ol>
+					<li>负责使用HTML5和CSS3进行页面编写，解决不同浏览器的显示问题。</li>
+					<li>实现页面的交互功能。</li>
+				</ol>
+			</div>
+			<div class="project">
+				<div class="title">负责项目</div>
+				<div class="project_title">
+					<span>东北炼化公司工程管理系统</span>
+					<span>PC端项目</span>
+				</div>
+				<div class="project_detail">
+					<div class="detail_title">项目为东北炼化公司购买用来进行公司内部项目管理的平台。前后端分离项目。</div>
+该项目为PC端项目，不依托框架，使用原生的JS进行页面交互。项目为前后端分离项目，通过Ajax获取后端数据并使用JS将数据渲染到页面上。通过服务器获取本地cookie来进行登录状态的验证。我负责工程进度监督和后期回访部分的前端开发。</div>
+			</div>
+		</div>
+	</div>
+	<div class="edu_history">
+		<div class="edu_title">教育背景</div>
+		<div class="edu_name">
+			<span>2010.09-2014.07</span>
+			<span>齐齐哈尔大学</span>
+		</div>
+		<div class="edu_lv">
+			<span>通信工程专业</span>
+			<span>学士</span>
+		</div>
+	</div>
+	<div class="person_information">
+		<div class="person_title">个人信息</div>
+		<div class="person_detail">
+			<div class="list">
+				<div>姓名： 王楷焜	</div>
+				<div>性别： 男</div>
+				<div>学历： 本科</div>
+			</div>
+			<div class="list">
+				<div>生日： 1992年09月03日	</div>
+				<div>工作时间： 4年</div>
+				<div>婚姻状况： 未婚</div>
+			</div>
+			<div class="list">
+				<div>现居住地： 上海</div>
+				<div>籍贯： 黑龙江</div>
+				<div>到职时间：1个月左右</div>
+			</div>
+			<div class="list">
+				<div>邮箱： wangyakun1992@126.com</div>
+			</div>
+		</div>
+	</div>
+	<div class="technology">
+		<div class="technology_title">
+			<span>专业技能</span>
+			<span>关键字： web, VUE, javascript</span>
+		</div>
+		<div class="technology_detail">
+			<ul>
+				<li>熟悉JavaScript核心基础，掌握ES6常用语法；</li>
+				<li>熟练运用VUE框架，擅长使用VUE全家桶进行项目开发；</li>
+				<li>熟练使用LESS预编译，实现CSS的管理和维护；</li>
+				<li>熟练掌握微信公众号、小程序开发；</li>
+				<li>对React有一定的了解。</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
