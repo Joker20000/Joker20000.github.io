@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .divout{
+            position: absolute;
+            top: 150px;
+            left: 150px;
+            width: 100px;
+            height: 100px;
+            font-size: 0;
+            transform-origin: left;
+            transform-style: preserve-3d;
+            transform: rotateY(90deg);
+            transition: all 2s;
+
+        }
+        .div1{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: royalblue;
+            transform-origin: left;
+            font-size: 30px;
+            text-align: center;
+            line-height: 100px;
+        }
+        .div2{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 100px;
+            background-color: saddlebrown;
+            transform: rotateY(90deg);
+            transform-origin: left;
+            font-size: 30px;
+            text-align: center;
+            line-height: 100px;
+        }
+        .div3{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: #929dff;
+            transform: translateZ(-20px);
+            transform-origin: top;
+        }
+        .open_book{
+            transform: rotateY(0) scale(1.5);
+            animation: move 3s;
+        }
+        .open_book>.div1{
+            animation: open 4s;
+            transform: rotateY(-90deg);
+        }
+        @keyframes move {
+            0% {transform: rotateY(90deg)}
+            75% {transform: rotateY(0)}
+            100% {transform: rotateY(0) scale(1.5)}
+        }
+        @keyframes open {
+            0% {transform: rotateY(0)}
+            75% {transform: rotateY(0)}
+            100%{transform: rotateY(-90deg)}
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="divout" onClick="addFn()">
+    <div class="div1">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1601026400712&di=1d371a6ba63b13100f02e5f1009dfe8e&imgtype=0&src=http%3A%2F%2Ft8.baidu.com%2Fit%2Fu%3D3571592872%2C3353494284%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D1200%26h%3D1290"
+             alt="">
+    </div>
+    <div class="div2">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1601026400712&di=25d52af500c1e61787ff7606a94c81e3&imgtype=0&src=http%3A%2F%2Ft7.baidu.com%2Fit%2Fu%3D3616242789%2C1098670747%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D900%26h%3D1350" alt="">
+    </div>
+    <div class="div3">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1601026400712&di=7c8e47960071613bb2c426e9ec7335ab&imgtype=0&src=http%3A%2F%2Ft8.baidu.com%2Fit%2Fu%3D1484500186%2C1503043093%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D1280%26h%3D853" alt="">
+    </div>
+</div>
+<script>
+    function addFn () {
+
+        event.currentTarget.classList.add('open_book');
+
+    }
+</script>
+</body>
+</html>
