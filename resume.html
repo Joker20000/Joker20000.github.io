@@ -1,252 +1,314 @@
-<!DOCTYPE html>
-<html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimum-scale=1,maximum-scale=1">
-<meta name="Author" content="王楷焜">
-<meta name="Keywords" content="前端开发,简历,王楷焜">
+<!doctype html>
+<html lang="en">
 <head>
-	<script type="text/javascript">
-		var page = window.navigator.appVersion;
-		if(page.includes('Android') || page.includes('iPhone')){
-			window.location.href = 'https://joker20000.github.io/resumeMobile.html';
-		}
-	</script>
-	<title>简历</title>
-	<style type="text/css">
-		*{
-			margin: 0;
-			color: #4a4a4a;
-			font-size: 14px;
-		}
-		body{
-			margin: auto;
-			padding: 5px 0;
-			width: 1000px;
-		}
-		.name{
-			position: relative;
-			margin: 5px 0;
-			font-size: 22px;
-		}
-		.name::after{
-			content: "";
-			position: absolute;
-			bottom: -2px;
-			left: 0;
-			display: block;
-			width: 100%;
-			height: 1px;
-			border-bottom: 1px dashed #00f;
-		}
-		.contact{
-			text-align: right;
-			color: #ababab;
-		}
-		.work_for .work_title{
-			margin: 15px 40% 15px 0;
-			display: inline-block;
-			font-size: 18px;
-		}
-		.self_assessment .self_title{
-			margin: 15px 0;
-			font-size: 18px;
-		}
-		.self_assessment .self_content{
-			margin: 10px 15px;
-			line-height: 24px;
-		}
-		.work_history .work_history_title{
-			margin: 15px 0;
-			font-size: 18px;
-		}
-		.work_list .history_title{
-			margin: 15px 0;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-		}
-		.work_list .history_title span{
-			color: rgb(61, 168, 170);
-		}
-		.work_list .work_detail{
-			margin: 10px 0;
-		}
-		.project .title{
-			margin: 10px 0;
-			font-size: 16px;
-		}
-		.project .project_title{
-			margin: 10px 0;
-			display: flex;
-			justify-content: space-between;
-		}
-		.project .project_detail{
-			margin: 0 10px;
-			line-height: 24px;
-		}
-		.edu_history>div{
-			margin: 10px 0;
-		}
-		.edu_history .edu_title{
-			font-size: 18px;
-		}
-		.edu_history .edu_name{
-			display: flex;
-			justify-content: space-between;
-		}
-		.edu_history .edu_name span{
-			color: rgb(61, 168, 170);
-		}
-		.edu_history .edu_lv span{
-			margin-right: 50px;
-			color: #ababab;
-		}
-		.person_information .person_title{
-			margin: 10px 0;
-			font-size: 18px;
-		}
-		.person_detail .list{
-			margin: 8px 10px;
-			display: flex;
-			justify-content: space-between;
-		}
-		.person_detail .list div{
-			width: 200px;
-			white-space: nowrap;
-		}
-		.person_detail .list div:last-child{
-			text-align: right;
-		}
-		.technology .technology_title{
-			margin: 10px 0;
-			display: flex;
-			justify-content: space-between;
-		}
-		.technology .technology_title span:first-child{
-			font-size: 16px;
-		}
-		.technology .technology_detail{
-			margin: 0 10px;
-		}
-		.technology .technology_detail ul{
-			padding: 0;
-		}
-		.technology .technology_detail li{
-			margin: 8px 0;
-			list-style-type: none;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            padding: 20px 0;
+        }
+        .app_page{
+            margin: auto;
+            width: 1230px;
+            box-shadow: #1a1a24 0 0 5px;
+        }
+        #app{
+            position: relative;
+            margin: auto;
+            width: 1230px;
+            min-height: 100vh;
+            padding: 100px 80px;
+            background: #fff;
+            box-sizing: border-box;
+        }
+        .page_title{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1230px;
+            padding-top: 30px;
+            text-align: center;
+            font-size: 20px;
+            color: #fff;
+        }
+        .page_title:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 1230px;
+            height: 30px;
+            background-color: #4472c4;
+        }
+        .page_title span{
+            position: relative;
+            letter-spacing: 3px;
+            z-index: 1;
+        }
+        .bg_color{
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: auto;
+            width: 350px;
+            height: 30px;
+            background-color: #4472c4;
+        }
+        .bg_color:before, .bg_color:after{
+            content: '';
+            position: absolute;
+            top: 0;
+            display: block;
+            border-top: 30px solid transparent;
+        }
+        .bg_color:before{
+            left: 0;
+            border-left: 20px solid #fff;
+        }
+        .bg_color:after{
+            right: 0;
+            border-right: 20px solid #fff;
+        }
+        .user_info .user_name{
+            margin-bottom: 30px;
+            font-size: 40px;
+            color: #4472c4;
+        }
+        .user_info .user_info_detail{
+            display: flex;
+            flex-wrap: wrap;
+            width: 65%;
+            font-size: 22px;
+            line-height: 40px;
+        }
+        .user_info .user_info_detail .user_info_list{
+            padding-top: 8px;
+            width: 40%;
+            flex-grow: 1;
+            border-bottom: 1px solid #4a4a4a;
+            white-space: nowrap;
+        }
+        .title{
+            position: relative;
+            margin-top: 50px;
+            margin-bottom: 5px;
+            width: 250px;
+            height: 50px;
+            padding-right: 25px;
+            font-size: 30px;
+            background-color: #4472c4;
+            color: #fff;
+            text-align: center;
+            line-height: 50px;
+            box-sizing: border-box;
+            letter-spacing: 2px;
+        }
+        .title:before{
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            border-right: 25px solid #fff;
+            border-bottom: 50px solid transparent;
+        }
+        .title:after{
+            content: '';
+            position: absolute;
+            left: 100%;
+            bottom: 0;
+            display: block;
+            height: 10px;
+            width: 814px;
+            background-color: #4472c4;
+            transform: skewX(30deg) translateX(3px);
+        }
+        .part_info{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .part_info .part_list{
+            margin-top: 8px;
+            width: 50%;
+            flex-grow: 1;
+            font-size: 20px;
+        }
+        .job_history_list + .job_history_list{
+            margin-top: 15px;
+        }
+        .job_history .job_history_list .job_history_title{
+            margin-top: -5px;
+            display: flex;
+            padding: 0 8px;
+            font-size: 18px;
+            line-height: 40px;
+            background-color: #eeece1;
+        }
+        .job_history_title span:first-child{
+            display: inline-block;
+            width: 200px;
+        }
+        .job_history_title .job_name{
+            margin-left: auto;
+        }
+        .job_detail, .job_history_info{
+            margin: 8px 50px;
+        }
+        .job_history_info{
+            display: flex;
+        }
+        .job_history_info span:first-child{
+            color: #ababab;
+            white-space: nowrap;
+        }
+        .job_history_info ol li{
+            list-style-position: inside;
+            list-style-type: trad-chinese-informal;
+        }
+        .job_use{
+            margin: 8px 50px;
+        }
+    </style>
 </head>
 <body>
-	<div class="name">王楷焜</div>
-	<div class="contact">wangyakun1992@126.com</div>
-	<div class="work_for">
-		<span class="work_title">求职意向</span>
-		<span class="work_name">前端开发工程师</span>
-	</div>
-	<div class="self_assessment">
-		<div class="self_title">自我评价</div>
-		<div class="self_content">4年前端开发经验。熟练使用html/css/js/less编程，能够解决常见兼容性问题。熟悉VUE，React等主流的框架，有从零开始使用VUE独立完成项目的经验。熟悉webpack打包工具，可以对VUE的webpack的打包做出一定程度上的优化，并根据webpack功能特点对VUE代码做出特定的优化。对微信小程序的开发有一定的了解，能够为项目进行迭代升级和维护。具有良好的编程习惯和较强的学习能力。能够快速的投入到实际工作中，抗压能力强。</div>
-	</div>
-	<div class="work_history">
-		<div class="work_history_title">工作经历</div>
-		<div class="work_list">
-			<div class="history_title">
-				<span class="work_time">2018.05-至今	</span>
-				<span class="company_name">上海淘略数据处理有限公司</span>
-				<span class="work_name">前端开发工程师</span>
-			</div>
-			<div class="work_detail">
-				<ol>
-					<li>负责微信公众号网页开发任务。</li>
-					<li>与产品，设计，开发人员配合，根据需求调整、修改、优化页面。</li>
-					<li>解决不同机型浏览器下的兼容问题。</li>
-					<li>负责微信小程序的版本迭代。</li>
-				</ol>
-			</div>
-			<div class="project">
-				<div class="title">负责项目</div>
-				<div class="project_title">
-					<span>嘉薪平台用户端</span>
-					<span>微信公众号网页开发</span>
-				</div>
-				<div class="project_detail">
-					<div class="detail_title">该项目为众包任务平台，是前后端分离项目，通过嘉薪公众号下个人登录按钮可以访问。</div>
-该项目使用VUE框架以及vue-router构建单页面应用，使用vuex处理跨页面组件间的通讯，同页面非父子组件间通讯使用中央总线事件。使用mint-ui组件来完成页面中的部分toast提示、弹窗、上拉加载、下拉刷新等功能，通过vue-cli快读搭建开发环境。通过axios组件与后端进行通信，获取后端数据，通过保存在localStorage的后端返回的请求头文件来做oAuth验证账号的登录状态。整个项目前端部分由我独立完成。</div>
-			</div>
-		</div>
-		<div class="work_list">
-			<div class="history_title">
-				<span class="work_time">2015.09-2017.12</span>
-				<span class="company_name">沈阳普华科技发展有限公司</span>
-				<span class="work_name">前端开发工程师</span>
-			</div>
-			<div class="work_detail">
-				<ol>
-					<li>负责使用HTML5和CSS3进行页面编写，解决不同浏览器的显示问题。</li>
-					<li>实现页面的交互功能。</li>
-				</ol>
-			</div>
-			<div class="project">
-				<div class="title">负责项目</div>
-				<div class="project_title">
-					<span>东北炼化公司工程管理系统</span>
-					<span>PC端项目</span>
-				</div>
-				<div class="project_detail">
-					<div class="detail_title">项目为东北炼化公司购买用来进行公司内部项目管理的平台。前后端分离项目。</div>
-该项目为PC端项目，不依托框架，使用原生的JS进行页面交互。项目为前后端分离项目，通过Ajax获取后端数据并使用JS将数据渲染到页面上。通过服务器获取本地cookie来进行登录状态的验证。我负责工程进度监督和后期回访部分的前端开发。</div>
-			</div>
-		</div>
-	</div>
-	<div class="edu_history">
-		<div class="edu_title">教育背景</div>
-		<div class="edu_name">
-			<span>2010.09-2014.07</span>
-			<span>齐齐哈尔大学</span>
-		</div>
-		<div class="edu_lv">
-			<span>通信工程专业</span>
-			<span>学士</span>
-		</div>
-	</div>
-	<div class="person_information">
-		<div class="person_title">个人信息</div>
-		<div class="person_detail">
-			<div class="list">
-				<div>姓名： 王楷焜	</div>
-				<div>性别： 男</div>
-				<div>学历： 本科</div>
-			</div>
-			<div class="list">
-				<div>生日： 1992年09月03日	</div>
-				<div>工作时间： 4年</div>
-				<div>婚姻状况： 未婚</div>
-			</div>
-			<div class="list">
-				<div>现居住地： 上海</div>
-				<div>籍贯： 黑龙江</div>
-				<div>到职时间：1个月左右</div>
-			</div>
-			<div class="list">
-				<div>邮箱： wangyakun1992@126.com</div>
-			</div>
-		</div>
-	</div>
-	<div class="technology">
-		<div class="technology_title">
-			<span>专业技能</span>
-			<span>关键字： web, VUE, javascript</span>
-		</div>
-		<div class="technology_detail">
-			<ul>
-				<li>熟悉JavaScript核心基础，掌握ES6常用语法；</li>
-				<li>熟练运用VUE框架，擅长使用VUE全家桶进行项目开发；</li>
-				<li>熟练使用LESS预编译，实现CSS的管理和维护；</li>
-				<li>熟练掌握微信公众号、小程序开发；</li>
-				<li>对React有一定的了解。</li>
-			</ul>
-		</div>
-	</div>
+<div class="app_page">
+    <div id="app">
+        <h2 class="page_title">
+            <span>个人简历</span>
+            <div class="bg_color"></div>
+        </h2>
+        <div class="user_info">
+            <h1 class="user_name">王楷焜</h1>
+            <div class="user_info_detail">
+                <div class="user_info_list">年龄： 30</div>
+                <div class="user_info_list">学历： 本科</div>
+                <div class="user_info_list">电话： 15645886008</div>
+                <div class="user_info_list">邮箱： wangyakun1992@126.com</div>
+            </div>
+        </div>
+        <h2 class="title">个人状态</h2>
+        <div class="part_info">
+            <div class="part_list">目前公司： 欧露塔科技有限公司</div>
+            <div class="part_list">目前职位： 前端开发工程师</div>
+            <div class="part_list">目前状态： 在职</div>
+            <div class="part_list">工作年限： 5年</div>
+        </div>
+        <h2 class="title">教育背景</h2>
+        <div class="part_info">
+            <div class="part_list">院校： 齐齐哈尔大学(2010.9-2014.7)</div>
+            <div class="part_list">专业： 通信工程</div>
+            <div class="part_list">学历： 本科</div>
+            <div class="part_list">是否统招： 是</div>
+        </div>
+        <h2 class="title">工作经历</h2>
+        <div class="job_history">
+            <div class="job_history_list">
+                <div class="job_history_title">
+                    <span>2020.07 —— 至今</span>
+                    <span>上海欧露塔科技有限公司</span>
+                    <span class="job_name">前端开发工程师</span>
+                </div>
+                <ul class="job_detail">
+                    <li>负责小程序，公众号以及APP等前端项目的开发和维护</li>
+                    <li>提炼组件，促进前端工程化、模块化，持续提升研发效率，保障产品质量</li>
+                    <li>钻研前端前沿技术，提升用户体验</li>
+                </ul>
+            </div>
+            <div class="job_history_list">
+                <div class="job_history_title">
+                    <span>2018.03 —— 2020.07</span>
+                    <span>上海淘略数据处理有限公司</span>
+                    <span class="job_name">前端开发工程师</span>
+                </div>
+                <ul class="job_detail">
+                    <li>根据产品和设计的要求，完成页面开发，适配多终端，独立完成模块分级设计</li>
+                    <li>使用vue框架进行项目开发</li>
+                    <li>配合后端工程师制定服务接口，并实现交互和调试</li>
+                    <li>根据开发规范进行编码，编写相关文档</li>
+                </ul>
+            </div>
+            <div class="job_history_list">
+                <div class="job_history_title">
+                    <span>2015.08 —— 2018.01</span>
+                    <span>海尔公司福州分公司</span>
+                    <span class="job_name">产品销售经理</span>
+                </div>
+            </div>
+            <div class="job_history_list">
+                <div class="job_history_title">
+                    <span>2014.08 —— 2015.08</span>
+                    <span>中国联通伊春分公司</span>
+                    <span class="job_name">运营专员</span>
+                </div>
+            </div>
+        </div>
+        <h2 class="title">项目经验</h2>
+        <div class="job_history">
+            <div class="job_history_list">
+                <div class="job_history_title">JJLin用户端</div>
+                <div class="job_history_info">
+                    <span>项目描述：</span>
+                    <span>一款新闻资讯类平台，平台内有新闻、日历、商城等功能，可以满足用户获取新闻、打卡签到、购买商品、查看活动日期等需求。有网页端和app（iOS， Android）。网页端以vue为基础架构进行开发，使用axios与后端进行通信。app以react-native为基础架构进行开发。</span>
+                </div>
+                <div class="job_history_info">
+                    <span>项目业绩：</span>
+                    <ol>
+                        <li>对页面进行优化，以提升页面响应速度和用户体验</li>
+                        <li>将部分组件重新封装，以确保更加方便的复用和维护</li>
+                        <li>将app所需的原生功能封装为react-native组件，以方便后面的开发和维护</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="job_history_list">
+                <div class="job_history_title">JJLin toolbox</div>
+                <div class="job_history_info">
+                    <span>项目描述：</span>
+                    <span>新闻资讯管理平台，用来为JJLin用户端发送新闻，管理评论。平台内有发布新闻、app活跃度统计、发起直播等功能。</span>
+                </div>
+                <div class="job_history_info">
+                    <span>项目业绩：</span>
+                    <ol>
+                        <li>优化图片缓存，降低网速对页面的影响</li>
+                        <li>以金山的ios推流sdk为基础，按照产品需求封装适用于app的直播推流组件</li>
+                        <li>通过内嵌网页的方式嵌入echars，使用户端管理者可以更加立体的查看JJLin用户端的相关数据</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="job_history_list">
+                <div class="job_history_title">嘉薪平台用户端</div>
+                <div class="job_history_info">
+                    <span>项目描述：</span>
+                    <span>众包任务平台，具有提现、转账、接任务、消费等功能。有微信公众号页面，小程序和app（android， iOS）。网页端以vue为基础架构进行开发，使用axios与后端进行通信。app使用HTML5plus进行开发。</span>
+                </div>
+                <div class="job_history_info">
+                    <span>项目业绩：</span>
+                    <ol>
+                        <li>用易于阅读的代码编写整个项目，确保项目的正常运行并方便维护</li>
+                        <li>对项目中常用的方法进行封装，确保方法可以在整个项目中进行复用</li>
+                        <li>通过wepback的配置和代码优化，提升首屏加载速度</li>
+                        <li>与产品和设计沟通，通过前端技术提升用户体验</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="title">专业技能</div>
+        <ul class="job_use">
+            <li>熟练掌握vue，对vue实现原理有一定的了解</li>
+            <li>熟练掌握React，能够封装跨平台的React-Native组件</li>
+            <li>熟悉前端工程化，对webpack打包原理有一定的了解</li>
+            <li>熟练使用less，sass等css预处理器</li>
+            <li>熟悉微信公众号页面和微信小程序的开发</li>
+            <li>熟悉常见的数据架构和设计模式</li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>
