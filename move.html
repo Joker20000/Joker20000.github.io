@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+        width: 300px;
+        height: 300px;
+        border: 1px solid #ababab;
+    }
+</style>
+<body>
+<div class="box">
+
+</div>
+<script>
+    let mobileType = navigator.userAgent.toLowerCase().includes('mobile');
+    let start = mobileType? 'touchstart': 'mousedown';
+    let end = mobileType? 'touchend': 'mouseup';
+    let div = document.getElementsByClassName('box')[0];
+    let x, y;
+    div.addEventListener(start, startFn);
+    div.addEventListener(end, endFn);
+    function startFn(e) {
+        console.log(e);
+    }
+    function endFn(e) {
+        console.log(e);
+    }
+</script>
+</body>
+</html>
