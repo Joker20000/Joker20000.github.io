@@ -18,19 +18,51 @@
 <div class="box">
 
 </div>
+<div id="text"></div>
 <script>
     let mobileType = navigator.userAgent.toLowerCase().includes('mobile');
     let start = mobileType? 'touchstart': 'mousedown';
     let end = mobileType? 'touchend': 'mouseup';
     let div = document.getElementsByClassName('box')[0];
-    let x, y;
+    let x, y, moveType;
     div.addEventListener(start, startFn);
     div.addEventListener(end, endFn);
     function startFn(e) {
-        console.log(e);
+        x = mobileType? e.changedTouches[0].pageX : e.x;
+        y = mobileType? e.changedTouches[0].pageY : e.y;
     }
     function endFn(e) {
-        console.log(e);
+        if(!x || !y) return;
+        let endX = mobileType? e.changedTouches[0].pageX : e.x;
+        let endY = mobileType? e.changedTouches[0].pageY : e.y;
+        let changeX = endX - x;
+        let changeY = endY - y;
+        if(changeX === changeY && changeX === 0) {
+            changeText('');
+            return;
+        }
+        let XType, YType;
+        if(changeX > 0){
+            XType = 'to right';
+        }else if(changeX < 0){
+            XType = 'to left';
+        }
+        if(changeY > 0){
+            YType = 'to bottom';
+        }else if(changeY < 0){
+            YType = 'to top';
+        }
+        if(Math.abs(changeX) > Math.abs(changeY)){
+            moveType = XType;
+        }else if(Math.abs(changeX) < Math.abs(changeY)){
+            moveType = YType;
+        }
+        x = y = 0;
+        changeText(moveType);
+    }
+    function changeText(text) {
+        let div = document.getElementById('text');
+        div.innerText = text;
     }
 </script>
 </body>

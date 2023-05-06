@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>snake</title>
+    <style>
+        #snake{
+            margin: 50px auto 0;
+            text-align: center;
+        }
+        .snake_box{
+            border: 1px solid #ababab;
+            display: inline-block;
+        }
+        .snake_row{
+            display: flex;
+        }
+        .snake_col{
+            width: 10px;
+            height: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="snake"></div>
+<script>
+    function snake() {
+        let length = 1500;
+        let voidArr = [];
+        let snakeArr = [];
+        let point;
+        function init() {
+            let div = document.getElementById('snake');
+            let ROW = 50, COL = 30;
+            let snakeBox = insertDiv(div, 'snake_box');
+            for(let i = 0; i < ROW; i++){
+                let snakeRow = insertDiv(snakeBox, 'snake_row');
+                for(let j = 0; j < COL; j++){
+                    insertDiv(snakeRow, 'snake_col');
+                    voidArr.push(`${i},${j}`);
+                }
+            }
+            snakeArr = initSnake();
+            point = addPoint(snakeArr);
+            addControl();
+        }
+        function addControl() {
+            window.addEventListener('keydown', event => {
+                console.log(event)
+            });
+        }
+        function addPoint(arr){
+            arr.forEach(str => {
+                let val = str.split(',');
+                let num = getNum(val)
+                voidArr.splice(num, 1);
+            });
+            let random = Math.floor(Math.random() * length);
+            let point = voidArr[random];
+            changeColor([point]);
+            return point;
+        }
+        function getNum(arr){
+            let num1 = +arr[0];
+            let num2 = +arr[1];
+            return num1 * 30 + num2;
+        }
+        function insertDiv (node, className){
+            let div = document.createElement('div');
+            div.className = className;
+            node.appendChild(div);
+            return div;
+        }
+        function initSnake() {
+            let arr = [`25,13`, `25,14`, `25,15`, `25,16`, `25,17`];
+            changeColor(arr);
+            return arr;
+        }
+        function changeColor(arr){
+            let row = document.getElementsByClassName('snake_row');
+            arr.forEach(str => {
+                let val = str.split(',');
+                let this_row = row[val[0]];
+                let col = this_row.getElementsByClassName('snake_col')[val[1]];
+                col.style.background = 'black';
+                length--;
+            });
+        }
+        return {
+            init
+        };
+    }
+    window.onload = function () {
+        let {init} = snake();
+        init();
+    }
+</script>
+</body>
+</html>
