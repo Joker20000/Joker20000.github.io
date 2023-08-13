@@ -8,22 +8,39 @@
     <title>吃什么</title>
     <style>
         input{
-            display: block;
             margin: 5px 0;
         }
         .add_btn{
+            margin: 5px 0;
             width: 30px;
             height: 20px;
             line-height: 20px;
             border: 1px solid #ababab;
             text-align: center;
-            margin: 5px 0;
+            cursor: pointer;
+        }
+        .cut{
+            margin: 5px;
+            display: inline-block;
+            width: 30px;
+            height: 20px;
+            line-height: 20px;
+            border: 1px solid #ababab;
+            cursor: pointer;
+            text-align: center;
+        }
+        .input_box{
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
 <body>
-    <div class="input_box">
-        <input type="text" placeholder="输入想吃的东西">
+    <div class="input_list">
+        <div class="input_box">
+            <input type="text" placeholder="输入想吃的东西">
+            <span class="cut">-</span>
+        </div>
     </div>
     <div class="add_btn" onclick="addEat()">+</div>
     <div class="btn_box">
@@ -33,29 +50,53 @@
     <div class="show_box"></div>
     <script>
 
-        var interval;
+        let div = document.getElementsByClassName('input_list')[0];
+
+        div.addEventListener('click', e => {
+            if(e.target.className === 'cut') {
+                let parent = e.target.parentElement;
+                let grand = parent.parentElement;
+                grand.removeChild(parent);
+            }
+        });
+
+        let interval;
         function addEat () {
 
-            var div = document.getElementsByClassName('input_box')[0];
+            let node = document.createElement('div');
 
-            var input = document.createElement('input');
+            node.classList.add('input_box');
+
+            let input = document.createElement('input');
 
             input.setAttribute('placeholder', '输入想吃的东西');
 
-            div.appendChild(input);
+            node.appendChild(input);
+
+            let span = document.createElement('span');
+
+            span.innerText = '-';
+
+            span.classList.add('cut');
+
+            node.appendChild(span);
+
+            div.appendChild(node);
 
         }
 
 
         function startFn () {
 
-            var input = document.getElementsByTagName('input');
+            if(interval) return;
 
-            var div = document.getElementsByClassName('show_box')[0];
+            let input = document.getElementsByTagName('input');
 
-            var arr = [];
+            let div = document.getElementsByClassName('show_box')[0];
 
-            for(var node of input) {
+            let arr = [];
+
+            for(let node of input) {
 
                 arr.push(node.value);
 
@@ -63,7 +104,7 @@
 
             interval = setInterval(function () {
 
-                var i = Math.floor(Math.random() * arr.length);
+                let i = Math.floor(Math.random() * arr.length);
 
                 div.innerText = arr[i];
 
@@ -74,6 +115,8 @@
         function stopFn () {
 
             clearInterval(interval);
+
+            interval = null;
 
         }
     </script>

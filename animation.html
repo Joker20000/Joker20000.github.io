@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>animation</title>
+    <style>
+        @keyframes left {
+            from {transform: translateX(0)}
+            to {transform: translateX(80px)}
+        }
+        @keyframes down {
+            from {transform: translateY(0)}
+            to {transform: translateY(100px)}
+        }
+        .parabola{
+            animation: left 0.5s linear;
+        }
+        .parabola .in{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #000;
+            animation: down 0.5s ease-in;
+        }
+        .parabola_js{
+            transition: all 16ms;
+        }
+        .parabola_js .in{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #000;
+            transition: all 16ms;
+        }
+    </style>
+</head>
+<body>
+<div class="animation">
+    <div class="parabola">
+        <div class="in"></div>
+    </div>
+    <div class="parabola_js">
+        <div class="in"></div>
+    </div>
+</div>
+<script>
+    let div = document.getElementsByClassName('parabola_js')[0];
+    let divIn = div.getElementsByClassName('in')[0];
+    let left = 0;
+    let down = 0;
+    let time =  0.01;
+    function fn() {
+        requestAnimationFrame(() => {
+            time = time + 0.01;
+            left = time * 5;
+            down = time * time * 5;
+            div.style.transform = `translateX(${left}px)`;
+            divIn.style.transform = `translateY(${down}px)`;
+            fn();
+        });
+    }
+    // fn();
+</script>
+</body>
+</html>
