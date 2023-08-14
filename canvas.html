@@ -6,40 +6,60 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        canvas{
-            border: 1px solid #ababab;
-        }
-    </style>
 </head>
 <body>
-<canvas width="500" height="500"></canvas>
+<div id="el"></div>
 <script>
-    let canvas = document.getElementsByTagName('canvas')[0];
-    let startX, startY;
-    let ctx = canvas.getContext('2d');
-    canvas.addEventListener('mousedown', mousedown);
-    function mousedown(e) {
-        canvas.addEventListener('mousemove', mousemove);
-        canvas.addEventListener('mouseup', mouseup)
-        startX = e.offsetX;
-        startY = e.offsetY;
-        ctx.beginPath();
-        ctx.arc(startX, startY, 1, 0, 2 * Math.PI);
-        ctx.fill();
-        ctx.closePath()
-        ctx.beginPath();
-        ctx.moveTo(startX, startY);
+    window.onload = function () {
+        canvasEl('el');
     }
-    function mousemove(e) {
-        ctx.lineTo(e.offsetX, e.offsetY);
-        ctx.stroke();
-        // ctx.fill();
+    function canvasEl(el, options = {}) {
+        let width = options.width || 800;
+        let height = options.height || 500;
+        let div = document.getElementById(el);
+        let canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        div.appendChild(canvas);
+        let ctx = canvas.getContext('2d');
+        canvas.addEventListener('mousedown', mousedown);
+        function mousedown(e) {
+            canvas.addEventListener('mousemove', mousemove);
+            canvas.addEventListener('mouseup', mouseup)
+            let startX = e.offsetX;
+            let startY = e.offsetY;
+            ctx.beginPath();
+            ctx.arc(startX, startY, 1, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.closePath()
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+        }
+        function mousemove(e) {
+            ctx.lineTo(e.offsetX, e.offsetY);
+            ctx.stroke();
+            // ctx.fill();
+        }
+        function mouseup(e) {
+            canvas.removeEventListener('mousemove', mousemove);
+            canvas.removeEventListener('mouseup', mouseup);
+            // ctx.closePath();
+        }
+        createStyle(options);
     }
-    function mouseup(e) {
-        canvas.removeEventListener('mousemove', mousemove);
-        canvas.removeEventListener('mouseup', mouseup);
-        // ctx.closePath();
+    function createStyle(options = {}) {
+        let width = options.width || 800;
+        let height = options.height || 500;
+        let style = document.createElement('style');
+        let head = document.head;
+        style.innerHTML = `
+            canvas{
+                border: 1px solid #ababab;
+                width: ${width}px;
+                height: ${height}px;
+            }
+        `;
+        head.appendChild(style);
     }
 </script>
 </body>
