@@ -6,9 +6,81 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .color_box{
+            position: relative;
+            margin: auto;
+            width: 200px;
+            height: 150px;
+            background-color: #f00;
+        }
+        .color_box_black{
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #000);
+        }
+        .color_box_white{
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(270deg, transparent, #fff);
+        }
+        .color_loop, .opacity_loop{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            overflow: hidden;
+        }
+        .color_loop{
+            right: -22px;
+            background: linear-gradient(0deg, #f00, #f0f, #00f, #0ff, #0f0, #ff0, #f00);
+        }
+        .opacity_loop{
+            right: -44px;
+            background: linear-gradient(0deg, transparent, #fff);
+        }
+        .color_checked, .opacity_checked{
+            position: absolute;
+            left: 0;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            box-sizing: border-box;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: #000 0 0 2px;
+        }
+        .opacity_checked{
+            border-color: #000;
+        }
+        .opacity_bg{
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+            background-image: radial-gradient(transparent 3px, #fff 3px, #fff);
+            background-size: 10px 10px;
+            background-color: #000;
+            background-repeat: repeat;
+        }
+    </style>
 </head>
 <body>
 <div id="el"></div>
+<div class="color_box">
+    <div class="color_box_white">
+        <div class="color_box_black"></div>
+    </div>
+    <div class="color_loop">
+        <div class="color_checked"></div>
+    </div>
+    <div class="opacity_loop">
+        <div class="opacity_bg"></div>
+        <div class="opacity_checked"></div>
+    </div>
+</div>
 <script>
     window.onload = function () {
         canvasEl('el');
@@ -57,6 +129,7 @@
                 border: 1px solid #ababab;
                 width: ${width}px;
                 height: ${height}px;
+                background-color: #fff;
             }
         `;
         head.appendChild(style);
