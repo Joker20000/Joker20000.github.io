@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>time</title>
+    <style>
+        body, html{
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+        .time{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            font-size: 3rem;
+        }
+        #time{
+            letter-spacing: 6px;
+        }
+    </style>
+</head>
+<body>
+<div class="time">
+    <div id="day"></div>
+    <div id="time"></div>
+    <div id="week"></div>
+</div>
+<script>
+    function changeText(id, text) {
+        let div = document.getElementById(id);
+        if(div.innerText !== text) {
+            div.innerText = text;
+        }
+    }
+    function getTime() {
+        let monthArr = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];
+        let textArr =  ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+        let date = new Date();
+        let year = date.getFullYear() + '';
+        let month = date.getMonth();
+        let day = date.getDate();
+        let hour = date.getHours();
+        let min = date.getMinutes();
+        let week = date.getDay();
+        let str = '';
+        for(let val of year) {
+            str = str + textArr[val];
+        }
+        str = str + '年';
+        str = str + monthArr[month];
+        str = str + '月';
+        if(day < 10) {
+            str = str + textArr[day];
+        }else if(day < 20) {
+            str = str + '十' + ((day - 10) ? textArr[day - 10]: '');
+        }else if(day < 30) {
+            str = str + '二十' + ((day - 20)? textArr[day - 20]: '');
+        }else {
+            str = str + '三十' + ((day - 30)? textArr[day - 30]: '');
+        }
+        str = str + '日';
+        changeText('day', str);
+        changeText('time', hour+':'+min);
+        let weekArr = ['日', '一', '二', '三', '四', '五', '六'];
+        changeText('week', '星期'+weekArr[week]);
+    }
+    window.onload = function () {
+        setInterval(getTime, 1000);
+    }
+</script>
+</body>
+</html>
