@@ -95,7 +95,7 @@
         div.appendChild(canvas);
         let ctx = canvas.getContext('2d');
         canvas.addEventListener('mousedown', mousedown);
-        canvas.addEventListener('touchstart', mousedown);
+        canvas.addEventListener('touchstart', touchDown);
         function mousedown(e) {
             canvas.addEventListener('mousemove', mousemove);
             canvas.addEventListener('touchmove', mousemove);
@@ -110,12 +110,37 @@
             ctx.beginPath();
             ctx.moveTo(startX, startY);
         }
+        function touchDown(e) {
+            let touch = e.targetTouches[0];
+            canvas.addEventListener('touchmove', touchmove);
+            canvas.addEventListener('touchend', touchend);
+            let startX = touch.clientX;
+            let startY = touch.clientY;
+            console.log(touch);
+            ctx.beginPath();
+            ctx.arc(startX, startY, 1, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.closePath()
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+        }
         function mousemove(e) {
             ctx.lineTo(e.offsetX, e.offsetY);
             ctx.stroke();
             // ctx.fill();
         }
         function mouseup(e) {
+            canvas.removeEventListener('mousemove', mousemove);
+            canvas.removeEventListener('mouseup', mouseup);
+            // ctx.closePath();
+        }
+        function touchmove(e) {
+            let touch = e.targetTouches[0];
+            ctx.lineTo(touch.clientX, touch.clientY);
+            ctx.stroke();
+            // ctx.fill();
+        }
+        function touchend(e) {
             canvas.removeEventListener('mousemove', mousemove);
             canvas.removeEventListener('mouseup', mouseup);
             // ctx.closePath();
