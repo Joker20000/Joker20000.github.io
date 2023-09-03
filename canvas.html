@@ -95,9 +95,12 @@
         div.appendChild(canvas);
         let ctx = canvas.getContext('2d');
         canvas.addEventListener('mousedown', mousedown);
+        canvas.addEventListener('touchstart', mousedown);
         function mousedown(e) {
             canvas.addEventListener('mousemove', mousemove);
-            canvas.addEventListener('mouseup', mouseup)
+            canvas.addEventListener('touchmove', mousemove);
+            canvas.addEventListener('mouseup', mouseup);
+            canvas.addEventListener('touchend', mouseup);
             let startX = e.offsetX;
             let startY = e.offsetY;
             ctx.beginPath();
